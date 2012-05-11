@@ -1,0 +1,1 @@
+Baremetal bootloader based on AVR Application Note 109. Program using six-pin header and AVR-Dragon, AVR-ISP or similar.

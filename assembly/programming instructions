@@ -1,0 +1,15 @@
+This is very rough, and I would love to make it smoother, but let's see if we can walk before we run. Read the whole set of instructions first, as the transition from 3->4 must occur in less than 10 seconds.
+
+0) Plug in the board.
+1) Locate .hex file. (Result of compiling.)
+2) Download and install avrdude: http://www.nongnu.org/avrdude/
+3) Send a 'P' to the board.
+  a) You can do this from the command line in linux.
+       First set the baud rate: stty baud=1000000 -F /dev/ttyUSB0 . Sometimes you have to do this twice.
+       Then send the character: echo P > /dev/ttyUSB0
+  b) I can't seem to make echoing to the COM port work in Windows. It's easy enough just to use realterm or cygwin to do this.
+4) After sending 'P', you have 10 seconds to have avrdude program the device with the command:
+"avrdude -U flash:w:<file.hex> -c avr109 -b 1000000 -p m168 -P /dev/ttyUSB0 -v -v"
+You can probably guess what most of the parameters do. Let me know if you have questions.
+
+5) Check the status of avrdude and make sure it was successful.

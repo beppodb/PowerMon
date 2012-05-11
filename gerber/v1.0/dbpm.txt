@@ -1,0 +1,12 @@
+Layer stack:
+
+.c1c - top copper
+.c2c - layer 2 copper
+.c3c - layer 3 copper
+.c4c - bottom copper
+.cbm - bottom solder mask
+.cbs - bottom silk screen
+.cdr - NC drill file
+.co  - outline
+.ctm - top solder mask
+.cts - top silk screen

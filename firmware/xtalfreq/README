@@ -1,0 +1,3 @@
+Crystal frequency monitoring app. Install through serial port (with AVRDUDE) after bootloader.
+
+We had some assembly problems in the v1.0 batch, and this was written to test the crystal. It's not a very good test of crystal frequency, as it's using the ATmega168's internal 8MHz oscillator as the baseline. It's more of a test of crystal operation.
