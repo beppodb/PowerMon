@@ -1,4 +1,4 @@
-"Centroid Data for pc board: ""drivebay pm (new).brd"" as of: 5/8/2012 10:41:14 AM",,,,
+"Centroid Data for pc board: ""drivebay pm (new).brd"" as of: 7/31/2015 10:41:14 AM",,,,
 Measurements are in inches. Comma delimited,,,,
 Only surface mount components included,,,,
 ,,,,
@@ -69,4 +69,5 @@ U401,Bottom,1.27,1.25,0
 U402,Top,1.33,1,0
 U403,Bottom,1.27,0.75,0
 U404,Top,1.33,0.5,0
-X1,Top,1.275,3.21,270
+X1 (replaces X201 from v1.0),Top,1.275,3.21,270
+J203 (THT),Top,1.62,2.81,0

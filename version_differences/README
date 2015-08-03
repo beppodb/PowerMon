@@ -1,0 +1,43 @@
+This folder demonstrates the differences between the v1.0 and v1.1 designs.
+The main difference is the replacement of the crystal used from a 32.5 KHz
+crystal to a larger 100 KHz crystal. 
+
+As shown in the two schematic pngs, each crystal is wired up in the same 
+fashion to the microcontroller chip, with the newer crystal requiring 
+slightly larger capacitor values.
+
+
+******************************
+Part Differences:
+
+v1.0
+====
+C205,C206 - Capacitors 
+---------------------- 
+CAP 10pF 50V NP0
+Johanson Dielectrics Inc 500R15N100JV4T
+
+
+X201 - Crystal - 32.768 kHz crystal
+-----------------
+Crystal 32.7680kHz 12.5pF
+Fox Electronics FSXLF327
+http://www.digikey.com/product-search/en?keywords=631-1001-1-ND
+Size: 0.276" L x 0.060" W (7.00mm x 1.50mm)
+Height	0.055" (1.40mm)
+
+v1.1
+=====
+C205,C206 - Capacitors 
+---------------------- 
+CAP 18pF 50V NP0
+Yageo	CC0805JRNPO9BN180
+
+
+X1 - Crystal - 100 KHz
+-----------------
+XTAL 100kHz 12.5pF
+Abracon LLC	ABS25-100.000KHZ-T
+http://www.digikey.com/product-detail/en/ABS25-100.000KHZ-T/535-10245-1-ND/2218058
+Size: 0.315" L x 0.150" W (8.00mm x 3.80mm)
+Height: 0.098" (2.50mm)
