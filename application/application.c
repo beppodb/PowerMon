@@ -1,10 +1,11 @@
 /*
  ============================================================================
  Name        : application.c
- Author      : Daniel Bedard
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Author      : Daniel Bedard, updated by Jeff Young, 2015
+ Version     : 1.0
+ Copyright   : RENCI, 2011
+ Description : This application reads data measured by the PowerMon sensors 
+               via a USB interface, typically /dev/ttyUSB0 or /dev/ttyUSB1 under Linux 
  ============================================================================
  */
 
@@ -178,7 +179,8 @@ int main(int argc, char **argv) {
 		fprintf (stderr,
 			 "Usage:\n %s <port_dev> <mask> <sample_pd> [<num_samples>]\n\n",
 			 argv[0]);
-		fprintf (stderr, "Example:\n%s /dev/ttyUSB1 1024 1 200\n", argv[0]);
+		fprintf (stderr, "Example:\n%s /dev/ttyUSB1 32 1 200\n", argv[0]);
+		fprintf (stderr, "(Read from sensor 5, or 0b10000, at 1 Hz for 200 samples)\n");
 		return 1;
 	}
 	strcpy (dev, argv[1]);
