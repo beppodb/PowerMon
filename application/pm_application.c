@@ -1,10 +1,12 @@
 /*
  ============================================================================
  Name        : application.c
- Author      : Daniel Bedard
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Author      : Daniel Bedard, updated by Jeff Young, 2015
+ Version     : 1.0
+ Copyright   : RENCI, 2011
+ Description : This application reads data measured by the PowerMon sensors 
+               via a USB interface, typically /dev/ttyUSB0 or /dev/ttyUSB1 under Linux
+			   2015 Updates: The output has been updated to print out in CSV format, making it easier to parse.
  ============================================================================
  */
 
@@ -16,6 +18,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdint.h>
+//Use gettimeofday to sync readings with test code
+#include <time.h>
 
 #define VERSION_H 0
 #define VERSION_L 1
@@ -98,6 +102,13 @@ int powermon_set_time(uint32_t now) {
 }
 
 int powermon_get_samples() {
+
+
+	//-------------------------------------------------------------
+	struct timeval timer;
+
+	//-------------------------------------------------------------
+
 	unsigned char buffer[4];
 	unsigned int time; /* , reading; */
 	uint16_t voltage, current;
@@ -120,14 +131,16 @@ int powermon_get_samples() {
 			time = (((uint32_t)buffer[0] << 24) | ((uint32_t)buffer[1] << 16)
 					| ((uint32_t)buffer[2] << 8) | ((uint32_t)buffer[3]))
 					& 0x3FFFFFFF;
-			printf("timestamp: %u\n", time);
+			printf("timestamp,%u,-,-,-,-\n", time);
+			gettimeofday(&timer, NULL); //
+			printf("realtime(s),%ld,(us), %ld, -, -\n", timer.tv_sec, timer.tv_usec);
 		} else {
 			sensor = (uint8_t)buffer[0] & 0x0F;
 			voltage = ((uint16_t)buffer[1] << 4) | ((buffer[3] >> 4) & 0x0F);
 			current = ((uint16_t)buffer[2] << 4) | (buffer[3] & 0x0F);
 			v_double = (double)voltage / 4096 * V_FULLSCALE;
 			i_double = (double)current / 4096 * I_FULLSCALE / R_SENSE;
-			printf("sensor = %d, voltage = %fV, current = %fA\n", sensor, v_double, i_double);
+			printf("sensor,%d,voltage(V),%f,current(A),%f\n", sensor, v_double, i_double);
 		}
 	}
 	return 0;
@@ -178,7 +191,8 @@ int main(int argc, char **argv) {
 		fprintf (stderr,
 			 "Usage:\n %s <port_dev> <mask> <sample_pd> [<num_samples>]\n\n",
 			 argv[0]);
-		fprintf (stderr, "Example:\n%s /dev/ttyUSB1 1024 1 200\n", argv[0]);
+		fprintf (stderr, "Example:\n%s /dev/ttyUSB1 32 1 200\n", argv[0]);
+		fprintf (stderr, "(Read from sensor 5, or 0b10000, at 1 Hz for 200 samples)\n");
 		return 1;
 	}
 	strcpy (dev, argv[1]);
