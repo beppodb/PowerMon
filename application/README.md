@@ -22,7 +22,8 @@ Valid parameters are:
 3. Parse the data
 To calculate total time taken for a specific sample rate and number of samples: <num_samples> / <sample_pd>
 
-###Examples
+### Examples
+  
 Ex 1: Sample sensor 1 (0b10) at 1 Hz with 4 samples.
 `$./run_powermon /dev/ttyUSB0 2 1 4`
 
