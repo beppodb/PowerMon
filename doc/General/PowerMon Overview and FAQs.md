@@ -83,14 +83,14 @@ The figure below shows the location of the sensors on PowerMon. Each pair of pin
 
 The sensor input traditionally goes into the top set of female plugs while the output goes into the bottom set of female plugs. Note that the left hand set of plugs is mostly used for devices like ATX cables, which might need some passthrough connection but do not need to be measured.
 
-![img](figs\PowerMon Sensor Locations.png)
+![img](figs/PowerMon Sensor Locations.png)
 
 
 ### ATX motherboard power:
 
  
 
-![img](figs\atx_power_cables.jpg)
+![img](figs/atx_power_cables.jpg)
 
 ATX motherboard power is measured using “Cable A” specified in Github under the assembly folder, and there is one white female and male connector.
 
@@ -98,9 +98,9 @@ ATX motherboard power is measured using “Cable A” specified in Github under 
 
  
 
-![img](figs\atx_powermon.jpg)
+![img](figs/atx_powermon.jpg)
 
-![img](figs\atx_powermon_2.jpg)
+![img](figs/atx_powermon_2.jpg)
 
 ### CPU power:
 
@@ -108,15 +108,15 @@ We don't have any pictures of CPU cable adapters, but you would measure the 12V 
 
 ### AC Power adapters:
 
-![img](figs\dc_power_cables_1.jpg)
+![img](figs/dc_power_cables_1.jpg)
 
-![img](figs\dc_power_cables_2.jpg)
+![img](figs/dc_power_cables_2.jpg)
 
 Power Brick outputs from Powermon – three different power bricks and a USB power output.  Note that we have cut the cables so that we can create custom Molex plugs that measure the voltage and current for the wires within these plugs.
 
-![img](figs\dc_power_cables_powermon_connection_1.jpg)
+![img](figs/dc_power_cables_powermon_connection_1.jpg)
 
-![img](figs\dc_power_cables_powermon_connection_2.jpg)
+![img](figs/dc_power_cables_powermon_connection_2.jpg)
 
 DC Power Brick sensor connectors for use with PowerMon – note that each sensor uses two pins. In this case, we have connected multiple power bricks to one Molex plug. Depending on the device being tested, we just looked at the output for the sensors. From the example above, this plug supports reading from sensors 4,5,6, and 7 on the PowerMon.
 
@@ -124,11 +124,11 @@ DC Power Brick sensor connectors for use with PowerMon – note that each sensor
 
 ### PCIe:
 
-### ![img](figs\gt_pcie_interposer.jpg)
-
+### ![img](figs/gt_pcie_interposer.jpg)
+                                                                                                         
 To measure PCIe power requires 3 sensors and a PCIe interposer card. The card for our infrastructure has been designed by a local lab at Georgia Tech Research Institute and has measurement points for the two 3.3V and 12V rails.
 
-### ![img](figs\gpu_6_8_pin_power_cables.jpg)
+### ![img](figs/gpu_6_8_pin_power_cables.jpg)
 
  
 
