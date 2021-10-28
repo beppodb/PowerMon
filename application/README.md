@@ -25,10 +25,13 @@ To calculate total time taken for a specific sample rate and number of samples: 
 ### Examples
   
 Ex 1: Sample sensor 1 (0b10) at 1 Hz with 4 samples.
+  
 `$./run_powermon /dev/ttyUSB0 2 1 4`
 
 Ex 2: Sample sensor 6 (0b100000) at 1 KHz with 4000 samples (~4 seconds).
+
 `$./run_powermon /dev/ttyUSB0 64 1000 4000`
 
 Ex 3: Sample sensors 1,2, and 3 (0b1110) at 500 Hz with 200 samples (~400ms)
+
 `$./run_powermon /dev/ttyUSB0 14 500 200`
