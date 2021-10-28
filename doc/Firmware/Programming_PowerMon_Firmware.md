@@ -1,4 +1,4 @@
-#Overview#
+# Overview
 ----------
 
 
@@ -7,14 +7,14 @@ To program PowerMon, you will need to load the bootloader first and then load th
 1. Using a 6 pin programmer to load a bootloader onto the device. You then can verify that the bootloader is running with PuTTY or minicom. 
 2. Loading the PowerMon firmware onto the the device via its USB-serial interface. 
 
-##Background Reading:##
+## Background Reading: ##
 This firmware design and programming method is based on a series of Atmel application notes including [AVR 109: Self Programming](http://www.atmel.com/Images/doc1644.pdf "AVR 109") and [AVR 911: AVR Open Source Programmer](http://www.atmel.com/Images/doc2568.pdf "AVR 911"). The basic premise is that a bootloader is installed first, which then allows for loading further firmware via a serial interface using the PowerMon's onboard USB port as a COM port. 
 
 Initially, Atmel Studio was used to compile and download the firmware, and these instructions are still 
 included in the TODO file. However, this document uses AVRDUDE for all programming and uses the "usbtiny" programmers and "avr911 (aka AVROSP)" programmers, respectively. This is mainly because the more readily 
 available pocket programmer does not work with Atmel Studio. 
 
-#More Detailed Overview#
+# More Detailed Overview #
 ----------
 
 1. On Windows, download and install WinAVR and AVRDUDE. On Linux download avr-gcc and related tools.
@@ -26,7 +26,7 @@ available pocket programmer does not work with Atmel Studio.
 7. Load the PowerMon firmware using just the PowerMon USB connection and the AVR911 programmer. 
 8. Verify that the firmware is loaded with PuTTY.
 
-#Setup and Tools#
+# Setup and Tools #
 ----------
 
 We used the Pocket AVR programmer which provides a USB mini-B interface to a 6-pin AVR In-System Programming (ISP) programmer. The design is open-sourced by SparkFun and should be available from many vendors. Note that this programmer works with any chip with less than 64KB of flash - PowerMon's microcontroller has 16 KB of flash.
@@ -42,7 +42,7 @@ The below figure shows the setup of the programmer connected to the board.
 ![Programmer Pin Orientation](figs/Pocket_Programmer_Inactive.jpg)
 
 
-##Connecting the Programmer to the PowerMon board##
+## Connecting the Programmer to the PowerMon board ##
 
 The close-up picture below shows the pocket programmer. When **Stat1** is red, this means that the board is on and detected via USB. For reading/writing operations, the **Stat2** LED should light up as well.  
 
@@ -59,9 +59,7 @@ figure.
 ![Pocket Programmer Close-Up](figs/Powermon_programmer_connection.png)
 
   
-
-
-##Installing USB drivers and testing that AVRDude/USBTiny are set up correctly##
+## Installing USB drivers and testing that AVRDude/USBTiny are set up correctly ##
 On Windows, Zadig is your best bet for installing the driver for the programmer on Windows. Linux/Mac OS X
 should already have a generic USB driver installed. Once successful, the device should show up under
 Device Manager.
@@ -80,9 +78,9 @@ Reading | ################################################## | 100% 0.00s
 avrdude.exe: Device signature = 0x1e9406
 avrdude.exe done.  Thank you.
 ```
-##Installing Compilers##
+## Installing Compilers ##
 
-###Linux:###
+### Linux: ###
 
 [Linux AVR tools](http://www.ladyada.net/learn/avr/setup-unix.html "LadyAda AVR Tools")
 
@@ -93,7 +91,7 @@ sudo apt-get install flex byacc bison gcc build-essential git libusb-1.0-0 libus
 sudo apt-get install binutils-avr gcc-avr avr-libc
 ```
 
-###Windows/Cygwin:###
+### Windows/Cygwin: ###
 You will need an avr compiler, avr-gcc, which can be provided in Windows by 
 [WinAVR](http://winavr.sourceforge.net/ "WinAVR"). Under Cygwin, this may show up as follows:
 
@@ -103,10 +101,10 @@ $which avr-gcc
 ```
 
 
-#Compilation and Programming#
+# Compilation and Programming #
 ----------
 
-###Compiling the Bootloader###
+### Compiling the Bootloader ###
 ```
 /cygdrive/c/GitHub/PowerMon/firmware/bootloader$ make
 avr-gcc  -mmcu=atmega168 -Wall -gdwarf-2 -std=gnu99 -Os -funsigned-char
@@ -126,7 +124,7 @@ Data:          2 bytes (0.2% Full)
 (.data + .bss + .noinit)
 ```
 
-###What are all the resultant files?###
+#### What are all the resultant files?
 -  pmbl.elf: Sets the EEPROM, fuse lock, and loads the hex file. Program with this file! 
 -  pmbl.hex: hex file to program flash
 -  pmbl.eep: EEPROM programming file
@@ -136,7 +134,7 @@ A really good link that talks about the compilation process can be found
 [here](http://openhardwareplatform.blogspot.com/2011/03/inside-arduino-build-process.html)
 
 
-#Programming the bootloader with AVRDUDE#
+# Programming the bootloader with AVRDUDE
 
 ## Fuses ##
 Fuses are set within the device to set certain fundamental features like frequency, bootloader flash size, and start address for valid data. For instance, for PowerMon,
@@ -150,11 +148,11 @@ demonstrates this and other fuses and basically says that we are specifying
 a bootloader size of 1024 and that it starts at address 0x1C00 and also that the chip
 should use an internal 8 MHz oscillator. 
 
-###How do we convert this to something we can use with avrude?###
+### How do we convert this to something we can use with avrdude?
 
 This [fuse calculator](http://www.engbedded.com/fusecalc/  "Fuse calculator") lets you specify these fuse values for the ATMega 168 part and provides you with the correct values for setting the low, high, and extended fuses. 
 
-### Programming Fuses with AVRDUDE ###
+### Programming Fuses with avrdude
 **NOTE** It's ok that the last fuse programming fails here. Reading back the raw data
 shows that the fuse is programmed correctly. 
 
@@ -219,7 +217,7 @@ avrdude.exe done.  Thank you.
 ```
 
 
-### Programming the Bootloader with AVRDUDE ###
+### Programming the Bootloader with avrdude
 -----------------------------------
 When the programmer is active , the Stat1, Stat2 and D+/D- lights should all
 be lit.
@@ -260,11 +258,11 @@ avrdude.exe: 16348 bytes of flash verified
 avrdude.exe done.  Thank you.```
 
 
-##Bootloader Verification with PuTTY##
+## Bootloader Verification with PuTTY
 
 Minicom was originally used to connect to the device and check for the bootloader
 "countdown", but PuTTY is easier to use cross-platform and provides enough capabilities
-for verification.
+for verification. Note that screen can also be used on Linux/Mac platforms to provide minicom functionality.
 
 First, make sure that the USB->Serial connection shows up under Device Manager in Windows
 or under Linux as `/dev/ttyS<X>`. **Note** The COM port can vary so it is not likely
@@ -285,7 +283,7 @@ What you should see is a countdown of the format "pmbl <9-0>" that will repeat. 
 that the bootloader has been successfully loaded.
 
 --------
-## Programming the System firmware ##
+## Programming the System firmware
 Once you have loaded the bootloader, you can actually remove the 6-pin programmer's
 cable from the PowerMon. Verify that the bootloader is still running by connecting
 to PuTTY again while only the USB cable is connected to the PowerMon.
@@ -295,7 +293,7 @@ instead of the "usbtiny" programmer. **NOTE** Remember to use the right COM port
 
 `$ avrdude -c avr911 -p m168 -b 1000000 -P COM6 -U flash:w:PowerMonSystem.hex`
 
-###System Firmware Output###
+### System Firmware Output
 Output should look something like what follows.
 
 ```
@@ -351,10 +349,10 @@ version.
 Now your board should be accessible via the code in the application directory that
 accesses the PowerMon via USB.
 
-#Miscellaneous#
+# Miscellaneous 
 The xtalfreq firmware can also be loaded after the bootloader, but it is strictly optional.
 
-##Xtalfreq Compilation Output##
+## Xtalfreq Compilation Output
 
 ```
 $ make
@@ -376,5 +374,5 @@ Data:        115 bytes (11.2% Full)
 (.data + .bss + .noinit)
 ```
 
-##Xtalfreq Verification Output##
-TODO
+## Xtalfreq Verification Output
+Todo - please feel free to post a PR for this!
