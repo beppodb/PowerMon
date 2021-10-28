@@ -2,19 +2,17 @@
 
 The main repo for PowerMon is located at Dan Bedard’s Github repo at https://github.com/beppodb/PowerMon. There is a 1.0 and 1.1 version of the hardware and software. Much of the original design and knowledge that went into this project was provided by Dan, and he assisted in creating this updated documentation. Georgia Tech researchers including Jee Choi, Sara Karamati, and Jeff Young have assisted in creating this updated documentation.
 
-
-
 Directories are as follows:
 
-<u>Application</u> – A simple application that initializes PowerMon and reads samples based on command-line parameters.
+* <u>Application</u> – A simple application that initializes PowerMon and reads samples based on command-line parameters.
 
-<u>Assembly</u> – Instructions for adding SMT and through-hole components to the circuit board and specifications of cables used to connect devices to PowerMon. 
+* <u>Assembly</u> – Instructions for adding SMT and through-hole components to the circuit board and specifications of cables used to connect devices to PowerMon. 
 
-Firmware – Firmware that programs the onboard microcontroller; program with AVR-Dragon or AVR-Dude 
+* <u>Firmware – Firmware that programs the onboard microcontroller; program with AVR-Dragon or AVR-Dude 
 
-<u>Gerber</u> – Gerber files that can be given to a PCB fab to create more PowerMon circuit boards
+* <u>Gerber</u> – Gerber files that can be given to a PCB fab to create more PowerMon circuit boards
 
-PCB – schematic and layout in EAGLE format
+ * <u>PCB</u> – schematic and layout in EAGLE format
 
 ## What does the PowerMon hardware consist of? What limitations are there?
 
@@ -79,23 +77,20 @@ If you don't want to build your own cables, you can also take an existing extens
 
 Connect to the PowerMon port with Minicom at 1MB/s and send "v<lf>" (where <lf> is a line feed. ctrl-j in minicom or PuTTY). That will show you the hardware and firmware version number according to https://github.com/beppodb/PowerMon/blob/master/firmware/system/powermon.c.
 
-
-
-
 ## How to hook up devices to PowerMon
 
 The figure below shows the location of the sensors on PowerMon. Each pair of pins is connected together and the leftmost connector is just used as a passthrough connector. It is normally used with the ground/neutral pins for an ATX connector as shown below in the next section. 
 
 The sensor input traditionally goes into the top set of female plugs while the output goes into the bottom set of female plugs. Note that the left hand set of plugs is mostly used for devices like ATX cables, which might need some passthrough connection but do not need to be measured.
 
-![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\PowerMon Sensor Locations.png)
+![img]("figs/PowerMon Sensor Locations.png")
 
 
 ### ATX motherboard power:
 
  
 
-![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\atx_power_cables.jpg)
+![img](figs/atx_power_cables.jpg)
 
 ATX motherboard power is measured using “Cable A” specified in Github under the assembly folder, and there is one white female and male connector.
 
@@ -103,9 +98,9 @@ ATX motherboard power is measured using “Cable A” specified in Github under 
 
  
 
-![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\atx_powermon.jpg)
+![img](figs/atx_powermon.jpg)
 
-![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\atx_powermon_2.jpg)
+![img](figs/atx_powermon_2.jpg)
 
 ### CPU power:
 
@@ -113,15 +108,15 @@ We don't have any pictures of CPU cable adapters, but you would measure the 12V 
 
 ### AC Power adapters:
 
-![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\dc_power_cables_1.jpg)
+![img](figs/dc_power_cables_1.jpg)
 
-![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\dc_power_cables_2.jpg)
+![img](figs/dc_power_cables_2.jpg)
 
 Power Brick outputs from Powermon – three different power bricks and a USB power output.  Note that we have cut the cables so that we can create custom Molex plugs that measure the voltage and current for the wires within these plugs.
 
-![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\dc_power_cables_powermon_connection_1.jpg)
+![img](figs/dc_power_cables_powermon_connection_1.jpg)
 
-![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\dc_power_cables_powermon_connection_2.jpg)
+![img](figs/dc_power_cables_powermon_connection_2.jpg)
 
 DC Power Brick sensor connectors for use with PowerMon – note that each sensor uses two pins. In this case, we have connected multiple power bricks to one Molex plug. Depending on the device being tested, we just looked at the output for the sensors. From the example above, this plug supports reading from sensors 4,5,6, and 7 on the PowerMon.
 
@@ -129,11 +124,11 @@ DC Power Brick sensor connectors for use with PowerMon – note that each sensor
 
 ### PCIe:
 
-### ![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\gt_pcie_interposer.jpg)
-
+### ![img](figs/gt_pcie_interposer.jpg)
+                                                                                                         
 To measure PCIe power requires 3 sensors and a PCIe interposer card. The card for our infrastructure has been designed by a local lab at Georgia Tech Research Institute and has measurement points for the two 3.3V and 12V rails.
 
-### ![img](C:\Git_Repos\external\github\powermon\PowerMon\doc\General\figs\gpu_6_8_pin_power_cables.jpg)
+### ![img](figs/gpu_6_8_pin_power_cables.jpg)
 
  
 
@@ -155,8 +150,4 @@ The following example samples sensor 6 at 1 KHz for approximately 4 seconds (400
 
 ## How to reduce interference from included system components
 
-The best way to do this is to remove any extraneous components in your system! Note that for ATX power, you are unlikely to be able to separate some on-board power consumption, so it may be easiest to unplug untested devices (network cards, untested GPUs, extra memory). You may also be able to use BIOS settings to disable some onboard components.
-
- 
-
- 
+The best way to do this is to remove any extraneous components in your system! Note that for ATX power, you are unlikely to be able to separate some on-board power consumption, so it may be easiest to unplug untested devices (network cards, untested GPUs, extra memory). You may also be able to use BIOS settings to disable some onboard components. 
