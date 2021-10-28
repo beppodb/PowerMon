@@ -83,7 +83,7 @@ The figure below shows the location of the sensors on PowerMon. Each pair of pin
 
 The sensor input traditionally goes into the top set of female plugs while the output goes into the bottom set of female plugs. Note that the left hand set of plugs is mostly used for devices like ATX cables, which might need some passthrough connection but do not need to be measured.
 
-![img]("figs/PowerMon Sensor Locations.png")
+![img](figs/powermon_sensor_locations.png)
 
 
 ### ATX motherboard power:
