@@ -1,6 +1,4 @@
-#Updated documentation for PowerMon
-
-##Last Updated, 8/5/15, by Jeff Young
+# Updated documentation for PowerMon
 
 This folder contains additional documentation for PowerMon
 that was added at a later date. This documentation includes
