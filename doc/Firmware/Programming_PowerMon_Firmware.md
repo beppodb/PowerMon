@@ -58,10 +58,9 @@ figure.
 
 ![Pocket Programmer Close-Up](figs/Powermon_programmer_connection.png)
 
-  
+
 ## Installing USB drivers and testing that AVRDude/USBTiny are set up correctly ##
-On Windows, Zadig is your best bet for installing the driver for the programmer on Windows. Linux/Mac OS X
-should already have a generic USB driver installed. Once successful, the device should show up under
+On Windows, Zadig is your best bet for installing the driver for the programmer on Windows. Linux/Mac OS X should already have a generic USB driver installed. Once successful, the device should show up under
 Device Manager.
 
 ![Pocket Programmer Close-Up](figs/dev_manager_usb_pkt_programmer.png)
@@ -227,7 +226,7 @@ be lit.
 To program the compiled hexfile onto the PowerMon flash, use the following:
 `$ avrdude -c usbtiny -p m168 -U flash:w:pmbl.hex`
 
-###Bootloader Programming Output:###
+### Bootloader Programming Output: 
 ```
 avrdude.exe: AVR device initialized and ready to accept instructions
 
@@ -255,7 +254,8 @@ Reading | ################################################## | 100% 15.88s
 avrdude.exe: verifying ...
 avrdude.exe: 16348 bytes of flash verified
 
-avrdude.exe done.  Thank you.```
+avrdude.exe done.  Thank you.
+```
 
 
 ## Bootloader Verification with PuTTY
@@ -271,19 +271,17 @@ to always be COM6 as shown in the figure.
 ![Pocket Programmer Close-Up](figs/dev_manager_usb_com_port.png)
 
 Connect to PuTTY with the following settings under the *Session* menu:
-
--  Connection Type: Serial
--  Serial Line: COM<X> (where X is found via device manager or checking /dev)
--  Speed: 1000000
+* Connection Type: Serial
+* Serial Line: COM<X> (where X is found via device manager or checking /dev)
+* Speed: 1000000
 
 
 ![PuTTY Bootloader](figs/Putty_bootloader_confirmation.png)
 
-What you should see is a countdown of the format "pmbl <9-0>" that will repeat. This indicates
-that the bootloader has been successfully loaded.
+What you should see is a countdown of the format "pmbl <9-0>" that will repeat. This indicates that the bootloader has been successfully loaded.
 
---------
 ## Programming the System firmware
+
 Once you have loaded the bootloader, you can actually remove the 6-pin programmer's
 cable from the PowerMon. Verify that the bootloader is still running by connecting
 to PuTTY again while only the USB cable is connected to the PowerMon.
@@ -334,11 +332,9 @@ avrdude.exe: 6302 bytes of flash verified
 avrdude.exe done.  Thank you.
 ```
 
-##System Verification with PuTTY##
+## System Verification with PuTTY ##
 
-Use the same settings as before to connect to the PowerMon via PuTTY
-
-
+Use the same settings as before to connect to the PowerMon via PuTTY.
 
 You will initially see a blank screen. Entering `t` followed by `Ctrl-J` will
 print the current system time while 'v' followed by 'Ctrl-J' will print the
